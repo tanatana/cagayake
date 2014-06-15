@@ -172,20 +172,28 @@
 
         __init__();
 
+        var reset = (function(){
+            if ($target[0].tagName !== 'BODY') {
+                var $contents = $target.find('.cagayake-contents');
+                var padding = $contents.css('padding');
+                $target.html($contents.html());
+                $target.css({padding: padding});
+                $svgContainer.remove();
+            } else {
+                $svgContainer.remove();
+            }
+            __init__();
+        });
+
+
         $(window).resize(function(){
             clearTimeout(resized);
             resized = setTimeout(function(){
-                if ($target[0].tagName !== 'BODY') {
-                    var $contents = $target.find('.cagayake-contents');
-                    var padding = $contents.css('padding');
-                    $target.html($contents.html());
-                    $target.css({padding: padding});
-                    $svgContainer.remove();
-                } else {
-                    $svgContainer.remove();
-                }
-                __init__();
+                reset();
             }, 300);
+        });
+        $(document).on('load', 'img', function(){
+            reset();
         });
     };
 
