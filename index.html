@@ -11,15 +11,18 @@
      .jumbotron{
        background-color: rgba(255,255,255,0.6);
      }
-     .col-xs-10{
+     .main-col {
        background-color: rgba(255,255,255,0.5);
+     }
+     #mainContainer >.row:last-child > .col-xs-10{
+       padding-bottom: 150px;
      }
     </style>
   </head>
   <body>
     <div class="container" id="mainContainer">
       <div class="row">
-        <div class="col-xs-10 col-xs-offset-1">
+        <div class="col-xs-10 col-xs-offset-1 main-col">
           <div class="jumbotron" style="font-family: 'serif'">
             <h1 class="text-center">輝け</h1>
             <p>Cagayake (輝け, "glitter" or "luster") - create dynamic background image with jQuery.</p>
@@ -28,68 +31,95 @@
       </div>
 
       <div class="row">
-        <div class="col-xs-10 col-xs-offset-1">
-          <h2>primitive sampe</h2>
-          <div class="row">
-            <div class="col-xs-8 col-xs-offset-2" id="cagayakeSample" style="height: 300px;">
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-      <div class="row">
-        <div class="col-xs-10 col-xs-offset-1">
+        <div class="col-xs-10 col-xs-offset-1 main-col">
           <h2>Demo</h2>
           <div class="row">
-            <div class="col-xs-8 col-xs-offset-2">
+            <div class="col-xs-10 col-xs-offset-1">
               <div class="panel panel-default" >
                 <div class="panel-body" style="height: 100px; background: rgba(255, 255, 255, 0.3);" id="cagayakeDemo">
                   ５つの光が導く未来！輝け！スマイルプリキュア！
                 </div>
-                <div class="panel-footer">Panel footer</div>
+              </div>
+
+              <!-- Nav tabs -->
+              <ul class="nav nav-tabs  nav-justified">
+                <li class="active"><a href="#demo-html" data-toggle="tab">HTML</a></li>
+                <li><a href="#demo-js" data-toggle="tab">JS</a></li>
+              </ul>
+
+              <!-- Tab panes -->
+              <div class="tab-content">
+                <div class="tab-pane active" id="demo-html">
+                  <pre>
+&lt;div style="height: 100px; background: rgba(255, 255, 255, 0.3);" id="cagayakeDemo"&gt;
+  ５つの光が導く未来！輝け！スマイルプリキュア！
+&lt;/div&gt;
+
+
+                  </pre>
+                </div>
+                <div class="tab-pane" id="demo-js">
+                  <pre>
+$('#cagayakeDemo').cagayake({
+                    edgeLength: 100,
+                    color: {H:20, S:70, L:53},
+                    colorShake: 30,
+                    animation: {color: 20}});
+                  </pre>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
       <div class="row">
-        <div class="col-xs-10 col-xs-offset-1">
+        <div class="col-xs-10 col-xs-offset-1 main-col">
           <h2>Options</h2>
-          <dl>
-            <dt>Army Type 99 975&nbsp;hp Air-cooled Radial</dt>
-            <dd>Long Army designation for the Nakajima NK1 radial engine named Sakae.</dd>
-            <dt>Nakajima Ha25</dt>
-            <dd>Short Army designation for the initial production version of the Nakajima NK1 radial engine named Sakae.</dd>
-            <dt>Nakajima Ha35</dt>
-            <dd>Nakajima Ha35 Model 11</dd>
-            <dd>Nakajima Ha35 Model 12</dd>
-            <dd>Nakajima Ha35 Model 23 - 1,150 hp (858 kW)</dd>
-            <dt>Nakajima Ha105</dt>
-            <dt>Nakajima Ha115</dt>
-            <dd>Nakajima Ha115-I</dd>
-            <dd>Nakajima Ha115-II</dd>
-            <dt>Nakajima NK1</dt>
-            <dd>NK1C Sakae 12 - 925 hp (690 kW) , 940 hp (701 kW) , 975 hp (727 kW)</dd>
-            <dd>NK1D Sakae 11 - 970 hp (723 kW) , 985 hp (735 kW)</dd>
-            <dd>NK1F Sakae 21 - 1,115 hp (831 kW) , 1,130 hp (843 kW)</dd>
-            <dd>NK1E Sakae 31 - 1,130 hp (843 kW) , boosted to 1,210 hp (902 kW) with water-methanol injection</dd>
+
+          <dl class="dl-horizontal">
+            <dt>edgeLength</dt>
+            <dd>Number</dd>
+            <dd>三角形の一辺の長さ</dd>
+
+            <dt>offset</dt>
+            <dd>Object {x: Number, y: Number}</dd>
+            <dd>三角形同士の間隔</dd>
+
+            <dt>Color</dt>
+            <dd>Object {H: Number, S: Number, L: Number}</dd>
+            <dd>色の値 (HSL)</dd>
+
+            <dt>colorShake</dt>
+            <dd>Number</dd>
+            <dd>色のゆらぎ</dd>
+            <dd>0で単色 360 でめっちゃカラフル</dd>
+
+            <dt>svgOffset</dt>
+            <dd>Object {x: Number, y: Number}</dd>
+            <dd>三角の並びの開始値点をずらす</dd>
+
+            <dt>opacity</dt>
+            <dd>Number (0〜1.0)</dd>
+            <dd>透明度 </dd>
+
+            <dt>animation</dt>
+            <dd>Object {color: Number}</dd>
+            <dd>輝かせる</dd>
+            <dd>Numberの大きさが大きいといろんな色になる</dd>
           </dl>
         </div>
       </div>
+
       <div class="row">
-        <div class="col-xs-10 col-xs-offset-1">
-          <h2>Applications</h2>
-          <ul>
-            <li><a href="http://en.wikipedia.org/wiki/Kawasaki_Ki-48" title="Kawasaki Ki-48">Kawasaki Ki-48</a></li>
-            <li><a href="http://en.wikipedia.org/wiki/Mitsubishi_A6M" title="Mitsubishi A6M" class="mw-redirect">Mitsubishi A6M</a></li>
-            <li><a href="http://en.wikipedia.org/wiki/Mitsubishi_Ki-15" title="Mitsubishi Ki-15">Mitsubishi C5M</a></li>
-            <li><a href="http://en.wikipedia.org/wiki/Nakajima_B5N" title="Nakajima B5N">Nakajima B5N</a></li>
-            <li><a href="http://en.wikipedia.org/wiki/Nakajima_J1N" title="Nakajima J1N">Nakajima J1N</a></li>
-            <li><a href="http://en.wikipedia.org/wiki/Nakajima_Ki-43" title="Nakajima Ki-43">Nakajima Ki-43</a></li>
-            <li><a href="http://en.wikipedia.org/wiki/Nakajima_Ki-115" title="Nakajima Ki-115">Nakajima Ki-115</a></li>
-            <li><a href="http://en.wikipedia.org/wiki/Kawasaki_Ki-56" title="Kawasaki Ki-56">Kawasaki Ki-56</a></li>
-          </ul>
+        <div class="col-xs-10 col-xs-offset-1 main-col">
+          <h2>License</h2>
+          <div class="row">
+            <div class="col-xs-10 col-xs-offset-1">
+              MIT.
+            </div>
+          </div>
+
         </div>
       </div>
 
