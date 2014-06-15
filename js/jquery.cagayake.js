@@ -120,7 +120,7 @@
                     position: 'relative',
                     top: padding.top * -1,
                     left: padding.left * -1,
-                    height: $target.outerHeight(),
+                    height: '100%',
                     padding: padding
                 });
                 $originalContents.css({
@@ -192,7 +192,8 @@
                 reset();
             }, 300);
         });
-        $(document).on('load', 'img', function(){
+        $('body').on('load', 'img', function(){
+            console.log('image was loaded');
             reset();
         });
     };
