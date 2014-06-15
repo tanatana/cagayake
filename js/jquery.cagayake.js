@@ -185,6 +185,7 @@
             __init__();
         });
 
+        this.reset = reset;
 
         $(window).resize(function(){
             clearTimeout(resized);
@@ -195,9 +196,11 @@
     };
 
     $.fn.cagayake = function(options){
+        var cagayaki = []
         $.each(this,function(){
-            new Cagayake(this, options);
+            cagayaki.push(new Cagayake(this, options));
         });
+        return cagayaki;
     };
 
 }(jQuery));
