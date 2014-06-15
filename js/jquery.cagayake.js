@@ -192,10 +192,6 @@
                 reset();
             }, 300);
         });
-        $('body').on('load', 'img', function(){
-            console.log('image was loaded');
-            reset();
-        });
     };
 
     $.fn.cagayake = function(options){
