@@ -11,6 +11,8 @@
         var $target       = $(target);
         var $svgContainer = $('<div class="cagayake-container"></div>');
         var $svg          = $(document.createElementNS(svgns, 'svg'));
+        var resized;
+        var animation;
         var options       = {
             debug: true,
             color: {H:190, S:56, L:53},
@@ -105,15 +107,14 @@
                 position: 'absolute',
                 top: 0,
                 left: 0,
-                height: $target.outerHeight(),
+                height: Math.max($('body').outerHeight(), $(window).height()),
                 width: $target.outerWidth(),
                 overflow: 'hidden'
             });
 
-            console.log($target.outerHeight());
-
             if($target[0].tagName !== 'BODY') {
                 var $originalContents = $target.clone();
+                $originalContents.addClass('cagayake-contents');
                 var padding = $target.css('padding');
                 $svgContainer.css({
                     position: 'relative',
@@ -145,7 +146,8 @@
                 if(options.animation.color){
                     var animationCounter = 0;
                     var shakeColor = options.animation.color;
-                    setInterval(function(){
+                    clearInterval(animation);
+                    animation = setInterval(function(){
                         var triangles = $svg[0].getElementsByTagName('polygon');
                         var trianglesIndex;
                         var originalColor;
@@ -161,8 +163,6 @@
                             triangles[trianglesIndex].setAttributeNS(null, 'fill', generateColor(color, 3).string);
                         }
 
-
-
                         animationCounter += 1;
                     }, 100);
                 }
@@ -171,6 +171,22 @@
         };
 
         __init__();
+
+        $(window).resize(function(){
+            clearTimeout(resized);
+            resized = setTimeout(function(){
+                if ($target[0].tagName !== 'BODY') {
+                    var $contents = $target.find('.cagayake-contents');
+                    var padding = $contents.css('padding');
+                    $target.html($contents.html());
+                    $target.css({padding: padding});
+                    $svgContainer.remove();
+                } else {
+                    $svgContainer.remove();
+                }
+                __init__();
+            }, 300);
+        });
     };
 
     $.fn.cagayake = function(options){
