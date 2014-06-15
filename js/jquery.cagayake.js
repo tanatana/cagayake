@@ -101,8 +101,6 @@
                 opacity: options.opacity
             });
 
-            $svgContainer.append($svg);
-
             $svgContainer.css({
                 position: 'absolute',
                 top: 0,
@@ -112,11 +110,36 @@
                 overflow: 'hidden'
             });
 
-            $target.prepend($svgContainer);
+            console.log($target.outerHeight());
+
+            if($target[0].tagName !== 'BODY') {
+                var $originalContents = $target.clone();
+                var padding = $target.css('padding');
+                $svgContainer.css({
+                    position: 'relative',
+                    top: padding.top * -1,
+                    left: padding.left * -1,
+                    height: $target.outerHeight(),
+                    padding: padding
+                });
+                $originalContents.css({
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    padding: padding
+                });
+                $target.css({padding: '0px'});
+                $target.empty();
+                $svgContainer.append($svg);
+                $svgContainer.append($originalContents);
+                $target.prepend($svgContainer);
+            } else {
+                $svgContainer.append($svg);
+                $target.prepend($svgContainer);
+            }
 
             appendTriangles();
-
-
 
             if(options.animation){
                 if(options.animation.color){
