@@ -120,7 +120,7 @@
                     position: 'relative',
                     top: padding.top * -1,
                     left: padding.left * -1,
-                    height: '100%',
+                    height: $target.outerHeight(),
                     padding: padding
                 });
                 $originalContents.css({
